@@ -28,13 +28,13 @@ resource "aws_instance" "ubuntu_instance" {
     sudo mv kubectl /usr/local/bin/
 
     # Criando Minikube addons
-    cat <<EOT | sudo tee /usr/local/bin/setup-minikube-addons.sh > /dev/null
-    #!/bin/bash
-    minikube addons enable metrics-server
-    minikube addons enable dashboard
-    minikube addons enable ingress
-    EOT
-    sudo chmod +x /usr/local/bin/setup-minikube-addons.sh
+    #cat <<EOT | sudo tee /usr/local/bin/setup-minikube-addons.sh > /dev/null
+    ##!/bin/bash
+    #minikube addons enable metrics-server
+    #minikube addons enable dashboard
+    #minikube addons enable ingress
+    #EOT
+    #sudo chmod +x /usr/local/bin/setup-minikube-addons.sh
 
     # Criando minikube.service
     cat <<EOT | sudo tee /etc/systemd/system/minikube.service > /dev/null
@@ -44,7 +44,7 @@ resource "aws_instance" "ubuntu_instance" {
     Requires=docker.service
    
     [Service]
-    ExecStart=/usr/local/bin/minikube start --driver=docker --ports=80:80
+    ExecStart=/usr/local/bin/minikube start --driver=docker --ports=80:80 --addons default-storageclass storage-provisioner metrics-server dashboard ingress  
     ExecStop=/usr/local/bin/minikube stop
     Restart=always
     User=ubuntu
@@ -60,25 +60,25 @@ resource "aws_instance" "ubuntu_instance" {
     sudo systemctl start minikube
 
     # Criando servico Minikube addons
-    cat <<EOT | sudo tee /etc/systemd/system/minikube-addons.service > /dev/null
-    [Unit]
-    Description=Minikube Addons Setup
-    After=minikube.service
-    Requires=minikube.service
+    #cat <<EOT | sudo tee /etc/systemd/system/minikube-addons.service > /dev/null
+    #[Unit]
+    #Description=Minikube Addons Setup
+    #After=minikube.service
+    #Requires=minikube.service
 
-    [Service]
-    ExecStart=/usr/local/bin/setup-minikube-addons.sh
-    User=ubuntu
-    Environment=HOME=/home/ubuntu
+    #[Service]
+    #ExecStart=/usr/local/bin/setup-minikube-addons.sh
+    #User=ubuntu
+    #Environment=HOME=/home/ubuntu
 
-    [Install]
-    WantedBy=multi-user.target
-    EOT
+    #[Install]
+    #WantedBy=multi-user.target
+    #EOT
     
     # Atualizando o sistema e iniciando o servico Minikube addons
-    sudo systemctl daemon-reload
-    sudo systemctl enable minikube-addons
-    sudo systemctl start minikube-addons
+    #sudo systemctl daemon-reload
+    #sudo systemctl enable minikube-addons
+    #sudo systemctl start minikube-addons
 
   EOF
 
