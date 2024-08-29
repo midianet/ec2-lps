@@ -1,0 +1,38 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: graylog
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: graylog
+  template:
+    metadata:
+      labels:
+        app: graylog
+    spec:
+      containers:
+      - name: graylog
+        image: graylog/graylog:5.0
+        env:
+        - name: GRAYLOG_PASSWORD_SECRET
+          value: "admin"
+        - name: GRAYLOG_ROOT_PASSWORD_SHA2
+          value: "$(echo -n 'admin' | sha256sum | awk '{print $1}')"
+        - name: GRAYLOG_HTTP_EXTERNAL_URI
+          value: "http://lps-logs.midianet.digital"
+        - name: GRAYLOG_ELASTICSEARCH_HOSTS
+          value: "http://opensearch:9200"
+        - name: GRAYLOG_MONGODB_URI
+          value: "mongodb://mongodb:27017/graylog"
+        ports:
+        - containerPort: 9000
+        - containerPort: 12201
+        - containerPort: 1514
+        volumeMounts:
+        - name: graylog-data
+          mountPath: /usr/share/graylog/data
+      volumes:
+      - name: graylog-data
+        emptyDir: {}
