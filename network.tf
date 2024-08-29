@@ -26,5 +26,5 @@ resource "aws_security_group" "instance_sg" {
 }
 
 resource "aws_eip" "elastic_ip" {
-  instance = aws_instance.ubuntu_instance.id
+  instance = aws_instance.minikube.id
 }

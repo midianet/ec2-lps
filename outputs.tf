@@ -1,5 +1,5 @@
 output "instance_id" {
-  value = aws_instance.ubuntu_instance.id
+  value = aws_instance.minikube.id
 }
 
 output "instance_public_ip" {
