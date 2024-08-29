@@ -3,6 +3,11 @@ resource "aws_instance" "minikube" {
   instance_type = var.instance_type
   key_name      = var.key_name
 
+  ebs_block_device {
+    device_name = "/dev/sda1"
+    volume_size = 20 # Aumentar para 20 GB ou mais conforme necessário
+  }
+
   user_data = <<-EOF
     #!/bin/bash
     # Update the package list
@@ -15,7 +20,7 @@ resource "aws_instance" "minikube" {
     sudo apt install -y docker.io
     sudo systemctl start docker
     sudo systemctl enable docker
-    sudo usermod -aG docker ubuntu && newgrp docker
+    sudo usermod -a -G docker ubuntu && newgrp docker
   
     # Instalando Minikube
     curl -Lo minikube https://storage.googleapis.com/minikube/releases/latest/minikube-linux-amd64
@@ -27,8 +32,8 @@ resource "aws_instance" "minikube" {
     curl -LO "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl"
     sudo chmod +x kubectl
     sudo mv kubectl /usr/local/bin/
-
     sudo su - ubuntu -c "newgrp docker && minikube start --driver=docker --memory=2048 --cpus=2 --ports=80:80 --addons=metrics-server --addons=ingress --addons=dashboard"
+
   EOF
   # 
 
