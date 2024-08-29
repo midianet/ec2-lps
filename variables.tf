@@ -10,7 +10,7 @@ variable "ami_id" {
 
 variable "instance_type" {
   description = "Tipo de instância EC2. T2 Medium"
-  default     = "t3.medium"
+  default     = "t2.medium"
 }
 
 variable "key_name" {
