@@ -17,15 +17,17 @@ spec:
         image: graylog/graylog:5.0
         env:
         - name: GRAYLOG_PASSWORD_SECRET
-          value: "admin"
+          value: somepasswordpepper
         - name: GRAYLOG_ROOT_PASSWORD_SHA2
           value: "$(echo -n 'admin' | sha256sum | awk '{print $1}')"
         - name: GRAYLOG_HTTP_EXTERNAL_URI
           value: "http://lps-logs.midianet.digital"
+        - name: GRAYLOG_HTTP_BIND_ADDRESS
+          value: "0.0.0.0:9000"
         - name: GRAYLOG_ELASTICSEARCH_HOSTS
           value: "http://opensearch:9200"
-        - name: GRAYLOG_MONGODB_URI
-          value: "mongodb://mongodb:27017/graylog"
+        #- name: GRAYLOG_MONGODB_URI
+        #  value: "mongodb://mongodb:27017/graylog"
         ports:
         - containerPort: 9000
         - containerPort: 12201
