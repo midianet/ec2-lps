@@ -20,5 +20,13 @@ spec:
           value: "-Xms512m -Xmx512m"
         - name: discovery.type
           value: "single-node"
+        - name:  bootstrap.memory_lock
+          value: true
+        - name : action.auto_create_index
+          value: false
+        - name: plugins.security.ssl.http.enabled
+          value :false
+        - name: plugins.security.disabled
+          value: true
         ports:
         - containerPort: 9200
