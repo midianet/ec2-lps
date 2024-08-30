@@ -28,6 +28,10 @@ spec:
           value: "http://opensearch:9200"
         - name: GRAYLOG_MONGODB_URI
           value: "mongodb://mongodb:27017/graylog"
+        - name: GRAYLOG_SERVER_JAVA_OPTS
+          value: -Xms512m -Xmx512m -XX:NewRatio=1 -XX:MaxMetaspaceSize=256m -server -XX:+ResizeTLAB
+            -XX:+UseConcMarkSweepGC -XX:+CMSConcurrentMTEnabled -XX:+CMSClassUnloadingEnabled
+            -XX:+UseParNewGC -XX:-OmitStackTraceInFastThrow
         ports:
         - containerPort: 9000
         - containerPort: 12201
