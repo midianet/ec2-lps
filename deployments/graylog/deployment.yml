@@ -21,7 +21,7 @@ spec:
         - name: GRAYLOG_ROOT_PASSWORD_SHA2
           value: "$(echo -n 'admin' | sha256sum | awk '{print $1}')"
         - name: GRAYLOG_HTTP_EXTERNAL_URI
-          value: "http://lps-logs.midianet.digital"
+          value: "http://lps-logs.midianet.digital/"
         - name: GRAYLOG_HTTP_BIND_ADDRESS
           value: "0.0.0.0:9000"
         - name: GRAYLOG_ELASTICSEARCH_HOSTS
