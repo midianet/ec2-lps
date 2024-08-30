@@ -29,7 +29,7 @@ spec:
         - name: GRAYLOG_MONGODB_URI
           value: mongodb://mongodb:27017/graylog
         - name: GRAYLOG_ELASTICSEARCH_HOSTS
-          value: http://elasticsearch:9200
+          value: http://opensearch:9200
         resources:
           limits:
             memory: "1Gi"
