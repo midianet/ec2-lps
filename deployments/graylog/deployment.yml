@@ -32,9 +32,9 @@ spec:
         - containerPort: 9000
         - containerPort: 12201
         - containerPort: 1514
-        volumeMounts:
-        - name: graylog-data
-          mountPath: /usr/share/graylog/data
-      volumes:
-      - name: graylog-data
-        emptyDir: {}
+      #  volumeMounts:
+      #  - name: graylog-data
+      #    mountPath: /usr/share/graylog/data
+      #volumes:
+      #- name: graylog-data
+      #  emptyDir: {}
