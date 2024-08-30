@@ -17,7 +17,7 @@ spec:
         image: opensearchproject/opensearch:2.4.0
         env:
         - name: OPENSEARCH_JAVA_OPTS
-          value: "-Xms512m -Xmx512m"
+          value: "-Xms1g -Xmx1g"
         - name: discovery.type
           value: "single-node"
         - name:  bootstrap.memory_lock
