@@ -26,8 +26,8 @@ spec:
           value: "0.0.0.0:9000"
         - name: GRAYLOG_ELASTICSEARCH_HOSTS
           value: "http://opensearch:9200"
-        #- name: GRAYLOG_MONGODB_URI
-        #  value: "mongodb://mongodb:27017/graylog"
+        - name: GRAYLOG_MONGODB_URI
+          value: "mongodb://mongodb:27017/graylog"
         ports:
         - containerPort: 9000
         - containerPort: 12201
