@@ -21,12 +21,12 @@ spec:
         - name: discovery.type
           value: "single-node"
         - name:  bootstrap.memory_lock
-          value: true
+          value: "true"
         - name : action.auto_create_index
-          value: false
+          value: "false"
         - name: plugins.security.ssl.http.enabled
-          value: false
+          value: "false"
         - name: plugins.security.disabled
-          value: true
+          value: "true"
         ports:
         - containerPort: 9200
