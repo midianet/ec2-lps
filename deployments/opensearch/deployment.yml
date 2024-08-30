@@ -28,5 +28,11 @@ spec:
           value: "false"
         - name: plugins.security.disabled
           value: "true"
+        - name: http.host
+          value: 0.0.0.0
+        - name: network.host
+          value: 0.0.0.0
         ports:
         - containerPort: 9200
+          name: http
+          protocol: TCP
