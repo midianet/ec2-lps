@@ -25,7 +25,7 @@ spec:
         - name: GRAYLOG_HTTP_BIND_ADDRESS
           value: "0.0.0.0:9000"
         - name: GRAYLOG_ELASTICSEARCH_HOSTS
-          value: "http://opensearch:9200"
+          value: "opensearch:9200"
         - name: GRAYLOG_MONGODB_URI
           value: "mongodb://mongodb:27017/graylog"
         - name: GRAYLOG_SERVER_JAVA_OPTS
