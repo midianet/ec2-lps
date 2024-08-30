@@ -2,6 +2,8 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: graylog
+  labels:
+    app: graylog
 spec:
   replicas: 1
   selector:
@@ -15,28 +17,23 @@ spec:
       containers:
       - name: graylog
         image: graylog/graylog:5.0
+        ports:
+        - containerPort: 9000
         env:
         - name: GRAYLOG_PASSWORD_SECRET
           value: somepasswordpepper
         - name: GRAYLOG_ROOT_PASSWORD_SHA2
           value: "$(echo -n 'admin' | sha256sum | awk '{print $1}')"
         - name: GRAYLOG_HTTP_EXTERNAL_URI
-          value: "http://lps-logs.midianet.digital/"
-        - name: GRAYLOG_HTTP_BIND_ADDRESS
-          value: "0.0.0.0:9000"
-        - name: GRAYLOG_ELASTICSEARCH_HOSTS
-          value: "http://opensearch:9200"
+          value: http://127.0.0.1:9000/
         - name: GRAYLOG_MONGODB_URI
-          value: "mongodb://mongodb:27017/graylog"
-        - name: GRAYLOG_SERVER_JAVA_OPTS
-          value: -Xms512m -Xmx512m -XX:MaxMetaspaceSize=256m
-        ports:
-        - containerPort: 9000
-        - containerPort: 12201
-        - containerPort: 1514
-      #  volumeMounts:
-      #  - name: graylog-data
-      #    mountPath: /usr/share/graylog/data
-      #volumes:
-      #- name: graylog-data
-      #  emptyDir: {}
+          value: mongodb://mongodb:27017/graylog
+        - name: GRAYLOG_ELASTICSEARCH_HOSTS
+          value: http://elasticsearch:9200
+        resources:
+          limits:
+            memory: "1Gi"
+            cpu: "500m"
+          requests:
+            memory: "512Mi"
+            cpu: "250m"
