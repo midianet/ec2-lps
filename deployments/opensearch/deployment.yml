@@ -25,7 +25,7 @@ spec:
         - name : action.auto_create_index
           value: false
         - name: plugins.security.ssl.http.enabled
-          value :false
+          value: false
         - name: plugins.security.disabled
           value: true
         ports:
