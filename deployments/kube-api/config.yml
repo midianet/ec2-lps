@@ -3,7 +3,7 @@ kind: ConfigMap
 metadata:
   name: kube-api-config
 data:
-  KEYCLOAK_URL: "http://keycloak:8080"
+  KEYCLOAK_URL: "http://keycloak"
   KEYCLOAK_CLIENT: "local-api"
   KEYCLOAK_REALM: "LOCAL"
   MONITOR_APP_NAME: "kube-api"
