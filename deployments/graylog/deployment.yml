@@ -19,13 +19,18 @@ spec:
         image: graylog/graylog:5.0
         ports:
         - containerPort: 9000
-        env:
+          protocol: TCP
+          name: tcp  
+        - containerPort: 12201
+          protocol: UDP
+          name: udp  
+        env:        
         - name: GRAYLOG_PASSWORD_SECRET
-          value: somepasswordpepper
+          value: "somepasswordpepper"
         - name: GRAYLOG_ROOT_PASSWORD_SHA2
-          value: "$(echo -n 'admin' | sha256sum | awk '{print $1}')"
+          value: 8c6976e5b5410415bde908bd4dee15dfb167a9c873fc4bb8a81f6f2ab448a918
         - name: GRAYLOG_HTTP_EXTERNAL_URI
-          value: http://127.0.0.1:9000/
+          value: http://lps-graylog.midianet.digital:9000/
         - name: GRAYLOG_MONGODB_URI
           value: mongodb://mongodb:27017/graylog
         - name: GRAYLOG_ELASTICSEARCH_HOSTS

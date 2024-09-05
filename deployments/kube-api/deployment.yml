@@ -1,0 +1,81 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: kube-api
+  labels:
+    app: kube-api
+    name: kube-api
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: kube-api
+  template:
+    metadata:
+      labels:
+        app: kube-api
+        name: kube-api
+    spec:
+      containers:
+        - name: kube-api
+          image: midianet/kube-api:1.0
+          env:
+            - name: KEYCLOAK_URL
+              valueFrom:
+                configMapKeyRef:
+                  name: kube-api-config
+                  key: KEYCLOAK_URL
+            - name: KEYCLOAK_CLIENT
+              valueFrom:
+                configMapKeyRef:
+                  name: kube-api-config
+                  key: KEYCLOAK_CLIENT
+            - name: KEYCLOAK_REALM
+              valueFrom:
+                configMapKeyRef:
+                  name: kube-api-config
+                  key: KEYCLOAK_REALM
+            - name: MONITOR_APP_NAME
+              valueFrom:
+                configMapKeyRef:
+                  name: kube-api-config
+                  key: MONITOR_APP_NAME
+            - name: MONITOR_URL
+              valueFrom:
+                configMapKeyRef:
+                  name: kube-api-config
+                  key: MONITOR_URL
+            - name: MONITOR_HEALTH_URL
+              valueFrom:
+                configMapKeyRef:
+                  name: kube-api-config
+                  key: MONITOR_HEALTH_URL
+            - name: MONITOR_BASE_URL
+              valueFrom:
+                configMapKeyRef:
+                  name: kube-api-config
+                  key: MONITOR_BASE_URL
+            - name: LOGGER_URL
+              valueFrom:
+                configMapKeyRef:
+                  name: kube-api-config
+                  key: LOGGER_URL
+            - name: LOGGER_PORT
+              valueFrom:
+                configMapKeyRef:
+                  name: kube-api-config
+                  key: LOGGER_PORT
+            - name: LOGGER_ENV
+              valueFrom:
+                configMapKeyRef:
+                  name: kube-api-config
+                  key: LOGGER_ENV
+            - name: LOGGER_LEVEL
+              valueFrom:
+                configMapKeyRef:
+                  name: kube-api-config
+                  key: LOGGER_LEVEL
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 8080
+

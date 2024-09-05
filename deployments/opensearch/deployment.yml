@@ -19,13 +19,15 @@ spec:
         image: opensearchproject/opensearch:1.2.4
         ports:
         - containerPort: 9200
+        - containerPort: 9600
         env:
         - name: discovery.type
           value: single-node
-        resources:
-          limits:
-            memory: "512Mi"
-            cpu: "500m"
-          requests:
-            memory: "256Mi"
-            cpu: "250m"
+        - name: plugins.security.ssl.http.enabled
+          value: "false"
+        - name: plugins.security.disabled
+          value: "true"    
+#        resources:
+#         limits:
+#           memory: "1Gi"
+#           cpu: "500m"
