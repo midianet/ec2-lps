@@ -1,8 +1,24 @@
 #minikube 6gb ram 2 core
 minikube start --memory 6144 --cpus 2
 
+minikube start --ports=80:80 --cpus 4 --memory 8192
+
 
 #send log graylog
 for i in {1..100} ; do echo '{"version": "1.1","host":"david.org","short_message":"A short message that helps you identify what is going on","full_message":"Backtrace here\n\nmore stuff","level":1,"_user_id":9001,"_some_info":"foo","_some_env_var":"bar"}' | nc -w 1 -u graylog 12201  ; done
 
 for i in {1..100} ; do echo '{"version": "1.1","host":"david.org","short_message":"A short message that helps you identify what is going on","full_message":"Backtrace here\n\nmore stuff","level":1,"_user_id":9001,"_some_info":"foo","_some_env_var":"bar"}' | nc -w 1 -u $LOGGER_URL $LOGGER_PORT  ; done
+
+
+#configurar ingress para upload
+
+#no namespace do ingres (ingress-nginx)
+#editar o configmap (ingress-nginx-controller)
+#no valor data deixar assim:
+{
+	"hsts": "false",
+	"proxy-body-size": "500m"
+}
+#definindo o tamanho maximo de upload(post)
+#apagar o pod do controler do nginx(ingress-nginx-controller) pra ele criar um novo com a nova configuração
+
