@@ -21,7 +21,7 @@ spec:
           image: mongo-express
           env:
             - name: ME_CONFIG_MONGODB_SERVER
-              value: "mongodb"
+              value: "mongodb://mongodb:27017"
           ports:
             - containerPort: 8081
         
