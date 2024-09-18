@@ -7,4 +7,4 @@ COPY client.crt .
 COPY client.key .
 COPY config .
 COPY kubectl .
-RUN mv chmod +x kubectl && mv kubectl /usr/local/bin
+RUN chmod +x kubectl && mv kubectl /usr/local/bin
