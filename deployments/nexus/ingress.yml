@@ -7,7 +7,7 @@ metadata:
     nginx.ingress.kubernetes.io/rewrite-target: /
 spec:
   rules:
-  - host: lps-nexus.midianet.digital
+  - host: nexus.app.lpscogna.site
     http:
       paths:
       - path: /
@@ -17,7 +17,7 @@ spec:
             name: nexus
             port:
               number: 80
-  - host: lps-docker.midianet.digital
+  - host: docker.app.lpscogna.site
     http:
       paths:
       - path: /

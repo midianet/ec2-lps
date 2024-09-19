@@ -1,0 +1,17 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: kube-api-config
+data:
+  KEYCLOAK_URL: "http://keycloak"
+  KEYCLOAK_CLIENT: "local-api"
+  KEYCLOAK_REALM: "LOCAL"
+  MONITOR_APP_NAME: "kube-api"
+  MONITOR_URL: "http://monitor:8000"
+  MONITOR_BASE_URL: "http://kube-api:8080"
+  MONITOR_HEALTH_URL: "http://kube-api:8080/actuator/health"
+  LOGGER_URL: "graylog"
+  LOGGER_PORT: "12201"
+  LOGGER_ENV: "DEV"
+  LOGGER_LEVEL: "INFO"
+

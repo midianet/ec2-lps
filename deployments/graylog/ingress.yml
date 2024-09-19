@@ -6,7 +6,7 @@ metadata:
     nginx.ingress.kubernetes.io/rewrite-target: /
 spec:
   rules:
-  - host: lps-logs.midianet.digital
+  - host: logs.app.lpscogna.site
     http:
       paths:
       - path: /

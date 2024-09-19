@@ -5,7 +5,7 @@ metadata:
   namespace: default
 spec:
   rules:
-  - host: lps-monitor.midianet.digital
+  - host: monitor.app.lpscogna.site
     http:
       paths:
         - pathType: Prefix

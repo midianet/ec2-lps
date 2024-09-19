@@ -5,7 +5,7 @@ metadata:
   namespace: kubernetes-dashboard
 spec:
   rules:
-  - host: lps-dashboard.midianet.digital
+  - host: dashboard.app.lpscogna.site
     http:
       paths:
         - pathType: Prefix
