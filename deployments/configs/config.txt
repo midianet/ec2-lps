@@ -24,3 +24,36 @@ for i in {1..100} ; do echo '{"version": "1.1","host":"david.org","short_message
 #definindo o tamanho maximo de upload(post)
 #apagar o pod do controler do nginx(ingress-nginx-controller) pra ele criar um novo com a nova configuração
 
+
+
+
+
+
+#dnsmasq
+sudo apt install dnsmasq -y
+sudo vim /etc/dnsmasq.conf
+
+###############################
+
+# Define o domínio local
+domain=site.local
+# Responde a todas as requisições *.site.local com o IP 127.0.0.1
+address=/.site.local/127.0.0.1
+# (Opcional) Define o servidor DNS upstream (exemplo com Google DNS)
+server=8.8.8.8
+server=8.8.4.4
+
+################################
+
+sudo vim /etc/resolv.conf
+#add linha  
+nameserver 127.0.0.1
+
+#se instalado
+sudo systemctl disable --now systemd-resolved
+#sudo rm /etc/resolv.conf
+#sudo ln -s /run/systemd/resolve/resolv.conf /etc/resolv.conf
+
+sudo systemctl restart dnsmasq
+
+
