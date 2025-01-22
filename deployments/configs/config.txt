@@ -29,11 +29,7 @@ for i in {1..100} ; do echo '{"version": "1.1","host":"david.org","short_message
 #apagar o pod do controler do nginx(ingress-nginx-controller) pra ele criar um novo com a nova configuração
 
 
-
-
-
-
-#dnsmasq
+#DNSMASQ  * dns local
 sudo apt install dnsmasq -y
 sudo vim /etc/dnsmasq.conf
 
