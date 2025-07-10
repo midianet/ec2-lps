@@ -24,6 +24,7 @@ docker run -d --name gitlab-runner-001 --restart always \
   minikube start --ports 80:80  --ports 443:8443 --ports 30500:30500 --driver=docker --addons=metrics-server --addons=ingress --addons=dashboard --cpus 4 --memory 8192 --apiserver-ips 173.212.223.202 --insecure-registry="docker.app.archigen.site:30500" --listen-address=0.0.0.0
 
 
+minikube start --ports 80:80  --ports 443:8443 --ports 30500:30500 --addons=metrics-server --addons=ingress --addons=dashboard --cpus 4 --memory 8192 --apiserver-ips 173.212.223.202 --insecure-registry="docker.app.archigen.site:30500" --listen-address=0.0.0.0
 
 
 
@@ -46,7 +47,7 @@ kubectl create secret generic basic-auth \
   docker login
 
 
-
+cat /nexus-data/admin.password
 
 
 ------
