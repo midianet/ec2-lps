@@ -1,3 +1,56 @@
+
+
+
+docker run --rm -it -v /srv/gitlab-runner-001/config:/etc/gitlab-runner gitlab/gitlab-runner:latest register  --url https://gitlab.com  --token glrt-FKgndcxXBuyNzgT1ZTrJzWc6MXR2eWoxCm86MQp0OjIKdToxZzIzbhg.01.1j134xew3
+
+docker run --rm -it  -v /srv/gitlab-runner-002/config:/etc/gitlab-runner gitlab/gitlab-runner:latest register  --url https://gitlab.com  --token glrt-FKgndcxXBuyNzgT1ZTrJzWc6MXR2eWoxCm86MQp0OjIKdToxZzIzbhg.01.1j134xew3
+
+
+
+docker run -d --name gitlab-runner-001 --restart always \
+  -v /srv/gitlab-runner-001/config:/etc/gitlab-runner \
+  -v /var/run/docker.sock:/var/run/docker.sock \
+  gitlab/gitlab-runner:latest
+
+
+  docker run -d --name gitlab-runner-002 --restart always \
+  -v /srv/gitlab-runner-002/config:/etc/gitlab-runner \
+  -v /var/run/docker.sock:/var/run/docker.sock \
+  gitlab/gitlab-runner:latest
+
+(lembrar de por o privileged true no arquivo config.tom)
+
+
+  minikube start --ports 80:80  --ports 443:8443 --ports 30500:30500 --driver=docker --addons=metrics-server --addons=ingress --addons=dashboard --cpus 4 --memory 8192 --apiserver-ips 173.212.223.202 --insecure-registry="docker.app.archigen.site:30500" --listen-address=0.0.0.0
+
+
+
+
+
+sudo apt install apache2-utils  # se não tiver o htpasswd
+htpasswd -c auth admin
+
+kubectl create secret generic basic-auth \
+  --from-file=auth \
+  --namespace=kubernetes-dashboard
+
+
+
+  cp /home/minikube/.minikube/ca.crt .
+  cp /home/minikube/.kube/config .
+  cp /usr/local/bin/kubectl .
+  cp /home/minikube/.minikube/profiles/minikube/client.crt .
+  (alterar o config para o ip da maquina) e a porta para 443
+  (alterar o caminho de tudo para /root/.kube)
+
+  docker login
+
+
+
+
+
+------
+
 #minikube 6gb ram 2 core
 minikube start --memory 6144 --cpus 2
 
