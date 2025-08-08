@@ -1,0 +1,35 @@
+http {
+   server {
+      listen 80;
+      server_name nexus.archigen.site;
+
+      location / {
+        proxy_pass http://nexus:8081;
+        proxy_set_header Host $host;
+        proxy_set_header X-Real-IP $remote_addr;
+     }
+   }
+
+   server {
+     listen 80;
+     server_name ~^(.+)\.app\.archigen\.site$;
+
+     location / {
+        proxy_pass http://172.17.0.1:8080;
+        proxy_set_header Host $host;
+        proxy_set_header X-Real-IP $remote_addr;
+     }
+   }
+
+   server {
+     listen 80;
+     server_name archigen.site;
+
+     location / {
+        proxy_pass http://172.17.0.1:8080;
+        proxy_set_header Host $host;
+        proxy_set_header X-Real-IP $remote_addr;
+     }
+   }
+
+ }
